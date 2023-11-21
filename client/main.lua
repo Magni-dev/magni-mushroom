@@ -3,8 +3,10 @@ createdMushrooms = {}
 CreateThread(function()
 	while true do
 		local coords = GetEntityCoords(PlayerPedId())
+	
         for k,v in pairs(Config.MushroomSpawns) do 
-            if GetDistanceBetweenCoords(coords, v.location, true) < v.radius then
+	    local distance = #(coords - v.location)
+            if distance < v.radius then
                 spawnMushroom(k)
                 Wait(500)
             else
